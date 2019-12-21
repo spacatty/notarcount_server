@@ -1759,10 +1759,7 @@
               this.$q.loading.show({ message: "Регистрация" });
               var o = { entryData: this.data };
               c.a
-                .post(
-                  `http://fathomless-forest-81317.herokuapp.com/entries/create`,
-                  o
-                )
+                .post(`/entries/create`, o)
                 .then(function(o) {
                   t.$q.loading.hide(),
                     t.$q.notify({
@@ -1791,7 +1788,7 @@
               message: "Подгружаем отчеты..."
             }),
               c.a
-                .get(`http://fathomless-forest-81317.herokuapp.com/entries`)
+                .get(`/entries`)
                 .then(function(o) {
                   (t.entriesCount = o.data.length),
                     o.data.reverse(),
