@@ -14,10 +14,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 mongoose.connect(
-  "mongodb+srv://eotu:Fk`irf123@cluster0-hwdzb.mongodb.net/test?retryWrites=true&w=majority",
+  process.env.MONGO_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
-    console.log(`MONGO CONNECTED`);
+    console.log(`+ DB`);
   }
 );
 
@@ -26,6 +26,6 @@ app.use("/entries", require("./Routes/entryRoute"));
 app.use(history());
 app.use(serveStatic(__dirname + "/dist/spa"));
 
-app.listen(process.env.PORT, () => {
-  console.log(`STARTED IN ${process.env.PORT}`);
+app.listen(process.env.PORT || 8080, () => {
+  console.log(`+ APP IN ${process.env.PORT || 8080}`);
 });
