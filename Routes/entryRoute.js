@@ -29,6 +29,18 @@ entryRoute.get("/", async (req, res) => {
   }
 });
 
+entryRoute.post("/create", async (req, res) => {
+  const newEntry = new entrySchema({
+    entries: JSON.stringify(req.body.entryData),
+  });
+  try {
+    const savedEntry = await newEntry.save();
+    res.status(201).send({ savedEntry });
+  } catch (error) {
+    res.status(501).send({ error });
+  }
+});
+
 entryRoute.get("/normalized", async (req, res) => {
   let arrayOfEntries = [];
   let arrayOfWeeks = [];
@@ -43,16 +55,16 @@ entryRoute.get("/normalized", async (req, res) => {
 
   class week {
     constructor(slicedArray) {
-      const weekCountingData = countWeek(slicedArray)
+      const weekCountingData = countWeek(slicedArray);
       this.finished = slicedArray.length == 5 ? true : false;
       this.periodFrom = slicedArray[0].createdAt;
       this.periodTill = this.finished
         ? slicedArray[slicedArray.length - 1].createdAt
         : "../../....";
       this.weekEntryData = slicedArray;
-      this.weekIncome = weekCountingData.weekIncome
-      this.weekExpense = weekCountingData.weekExpense
-      this.weekRevenue = weekCountingData.weekRevenue
+      this.weekIncome = weekCountingData.weekIncome;
+      this.weekExpense = weekCountingData.weekExpense;
+      this.weekRevenue = weekCountingData.weekRevenue;
     }
   }
 
@@ -71,17 +83,4 @@ entryRoute.get("/normalized", async (req, res) => {
     res.status(501).send({ error });
   }
 });
-
-entryRoute.post("/create", async (req, res) => {
-  const newEntry = new entrySchema({
-    entries: JSON.stringify(req.body.entryData),
-  });
-  try {
-    const savedEntry = await newEntry.save();
-    res.status(201).send({ savedEntry });
-  } catch (error) {
-    res.status(501).send({ error });
-  }
-});
-
 module.exports = entryRoute;
