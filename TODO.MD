@@ -3,5 +3,5 @@
 ## Global:
 
 - [ ] Refactor code
-    [ ] Refactor v1
-    [ ] Refactor v2
+  - [ ] Refactor v1
+  - [ ] Refactor v2
