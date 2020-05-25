@@ -19,7 +19,7 @@ const parseAnalytics = (AOW) => {
     WI.push(parseInt(w.weekIncome));
     WE.push(parseInt(w.weekExpense.total));
     WR.push(parseInt(w.weekRevenue));
-    WK.push(parseInt(w.periodFrom));
+    WK.push(w.periodFrom);
   });
   return { WI, WE, WR, WD, WK };
 };
