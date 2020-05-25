@@ -9,21 +9,21 @@ const countWeek = (week) => {
   let weekRevenue = 0;
   let weekDocuments = 0;
   week.forEach((day) => {
-    weekExpense.total += day.entryData.totalData[0].totalExpense;
-    weekRevenue += day.entryData.totalData[0].totalCount;
+    weekExpense.total += parseInt(day.entryData.totalData[0].totalExpense);
+    weekRevenue += parseInt(day.entryData.totalData[0].totalCount);
     day.entryData.firstData.forEach((actualEntry) => {
-      weekDocuments += actualEntry.documentsCount;
+      weekDocuments += parseInt(actualEntry.documentsCount);
     });
-    weekIncome += day.entryData.totalData[0].totalIncome;
+    weekIncome += parseInt(day.entryData.totalData[0].totalIncome);
     if (day.entryData.secondData) {
-      weekExpense.courier += day.entryData.secondData[0].courierCost;
-      weekExpense.manager += day.entryData.secondData[0].manager;
-      weekExpense.seller += day.entryData.secondData[0].seller;
+      weekExpense.courier += parseInt(day.entryData.secondData[0].courierCost);
+      weekExpense.manager += parseInt(day.entryData.secondData[0].manager);
+      weekExpense.seller += parseInt(day.entryData.secondData[0].seller);
     } else {
       day.entryData.firstData.forEach((entry) => {
-        weekExpense.courier += entry.courierCost;
-        weekExpense.manager += entry.manager;
-        weekExpense.seller += entry.seller;
+        weekExpense.courier += parseInt(entry.courierCost);
+        weekExpense.manager += parseInt(entry.manager);
+        weekExpense.seller += parseInt(entry.seller);
       });
     }
   });

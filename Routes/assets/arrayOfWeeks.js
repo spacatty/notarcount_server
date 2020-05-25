@@ -15,11 +15,11 @@ const parseAnalytics = (AOW) => {
     WR = [],
     WK = [];
   AOW.forEach((w) => {
-    WD.push(w.weekDocuments);
-    WI.push(w.weekIncome);
-    WE.push(w.weekExpense.total);
-    WR.push(w.weekRevenue);
-    WK.push(w.periodFrom);
+    WD.push(parseInt(w.weekDocuments));
+    WI.push(parseInt(w.weekIncome));
+    WE.push(parseInt(w.weekExpense.total));
+    WR.push(parseInt(w.weekRevenue));
+    WK.push(parseInt(w.periodFrom));
   });
   return { WI, WE, WR, WD, WK };
 };
