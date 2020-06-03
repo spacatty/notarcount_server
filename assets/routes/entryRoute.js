@@ -1,9 +1,8 @@
 const express = require("express");
-const entrySchema = require("../Schemas/entrySchema");
 const entryRoute = express.Router();
 
-const entry = require("./assets/entry");
-const arrayOfWeeks = require('./assets/arrayOfWeeks')
+const entrySchema = require("../schemas/entrySchema");
+const arrayOfWeeks = require("../classes/arrayOfWeeks");
 
 entryRoute.get("/", async (req, res) => {
   try {
@@ -27,18 +26,11 @@ entryRoute.post("/create", async (req, res) => {
 });
 
 entryRoute.get("/normalized", async (req, res) => {
-  let arrayOfEntries = [];
-  let AOW = [];
   try {
-    const everythingFound = await entrySchema.find({});
-    everythingFound.forEach((aEntry) => {
-      arrayOfEntries.push(new entry(aEntry));
-    });
-    AOW = new arrayOfWeeks(arrayOfEntries)    
-    res.status(200).send({
-      appData: AOW,
-    });
+    const _appData = await new arrayOfWeeks(await entrySchema.find({}));
+    res.status(200).send({ appData: _appData });
   } catch (error) {
+    console.log(error);
     res.status(501).send({ error });
   }
 });

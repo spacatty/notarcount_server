@@ -21,7 +21,7 @@ mongoose.connect(
   }
 );
 
-app.use("/entries", require("./Routes/entryRoute"));
+app.use("/entries", require("./assets/routes/entryRoute"));
 
 app.use(history());
 app.use(serveStatic(__dirname + "/dist/spa"));
