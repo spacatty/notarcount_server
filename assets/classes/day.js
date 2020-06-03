@@ -5,7 +5,7 @@ class day {
   constructor(_) {
     this._id = _._id;
     this.createdAt = new formatedDate(
-      new Date(_[0].createdAt).toLocaleDateString()
+      new Date(_[0].createdAt).toLocaleDateString('ru')
     );
     this.dayEntryData = _;
     this.dayStats = countDay(this.dayEntryData);
