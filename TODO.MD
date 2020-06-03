@@ -2,6 +2,7 @@
 
 ## Global:
 
-- [ ] Refactor code
-  - [ ] Refactor v1
-  - [ ] Refactor v2
+- [x] Refactor code
+  - [x] Refactor v1
+  - [x] Refactor v2
+- [ ] Fix timezone
